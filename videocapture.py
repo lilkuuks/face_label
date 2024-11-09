@@ -1,5 +1,4 @@
 import os
-
 from mtcnn import MTCNN
 import cv2
 import tensorflow as tf
@@ -8,7 +7,7 @@ import tensorflow as tf
 detector = MTCNN()
 
 # Open a connection to the default camera (0)
-cap = cv2.VideoCapture(0+)
+cap = cv2.VideoCapture(0)
 
 face_folder = 'output_faces'
 
@@ -45,7 +44,7 @@ while True:
         x, y, width, height = result['box']
         cv2.rectangle(frame, (x, y), (x + width, y + height), (255, 0, 0), 2)
 
-        # face croping from frame
+        # Face Croping from frame
         frame_crop = frame[y:y + height, x:x + width]
         frame_filename = os.path.join(face_folder, f"{frame_count:04d}.jpg")
         cv2.imwrite(frame_filename, frame_crop)

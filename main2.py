@@ -1,3 +1,4 @@
+import os
 from mtcnn import MTCNN
 import cv2
 import tensorflow as tf
@@ -6,7 +7,8 @@ import tensorflow as tf
 detector = MTCNN()
 
 # Load the image
-image = cv2.imread("images/peopleB.jpg")
+image_path = "images/peopleB.jpg"
+image = cv2.imread(image_path)
 rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 # Detect faces
@@ -22,6 +24,11 @@ for result in results:
     # Draw facial landmarks
     for key, point in result['keypoints'].items():
         cv2.circle(image, point, 2, (0, 255, 0), -1)
+
+
+# save the annotated frame to output folder
+output_frame_filename = os.path.join("output", f"NUM_FACES_{count}.jpg")
+cv2.imwrite(output_frame_filename, image)
 
 cv2.imshow("MTCNN Detected Faces", image)
 cv2.imwrite("output/test2_detected.jpg", image)
