@@ -55,7 +55,7 @@ while True:
             cv2.circle(frame, point, 2, (0, 255, 0), -1)
 
     # Display the frame with detections
-    cv2.imshow("MTCNN Detected Faces (Camera)", frame)
+    cv2.imshow("MTCNN Detected Faces", frame)
 
     # Break the loop if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
